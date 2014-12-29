@@ -6,7 +6,7 @@
     "keywords": [
     ],
     "require": {
-        "php": ">=5.3",
+        "php": ">=5.3"
     },
     "require-dev": {
     },
