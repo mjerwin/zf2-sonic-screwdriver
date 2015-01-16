@@ -3,19 +3,19 @@
     "description": "A multifunctional tool for ZF2",
     "homepage": "https://github.com/mjerwin/zf2-sonic-screwdriver",
     "license": "MIT",
-    "keywords": [
-    ],
+    "keywords": [],
     "require": {
         "php": ">=5.3"
     },
-    "require-dev": {
-    },
-    "replace": {
-    },
+    "require-dev": {},
+    "replace": {},
     "type": "library",
     "autoload": {
         "psr-0": {
             "MJErwin\\SonicScrewdriver": "src/"
-        }
+        },
+        "classmap": [
+            "./Module.php"
+        ]
     }
 }
