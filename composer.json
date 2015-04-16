@@ -5,7 +5,8 @@
     "license": "MIT",
     "keywords": [],
     "require": {
-        "php": ">=5.3"
+        "php": ">=5.3",
+        "monolog/monolog": "dev-master"
     },
     "require-dev": {},
     "replace": {},

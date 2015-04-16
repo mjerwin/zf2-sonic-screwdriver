@@ -16,9 +16,9 @@ trait ServiceLocatorAwareTrait
     /**
      * @var ServiceLocatorInterface
      */
-    protected $serviceLocator = null;
+    protected $service_locator = null;
 
-    protected $rootServiceLocator = null;
+    protected $root_service_locator = null;
 
     /**
      * Set service locator
@@ -29,12 +29,7 @@ trait ServiceLocatorAwareTrait
      */
     public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
-        if ($serviceLocator instanceof FormElementManager)
-        {
-            $this->serviceLocator = $serviceLocator->getServiceLocator();
-        }
-
-        $this->serviceLocator = $serviceLocator;
+        $this->service_locator = $serviceLocator;
 
         return $this;
     }
@@ -46,7 +41,7 @@ trait ServiceLocatorAwareTrait
      */
     public function getServiceLocator()
     {
-        return $this->serviceLocator;
+        return $this->service_locator;
     }
 
     /**
@@ -54,26 +49,36 @@ trait ServiceLocatorAwareTrait
      */
     public function setRootServiceLocator(ServiceLocatorInterface $rootServiceLocator)
     {
-        $this->rootServiceLocator = $rootServiceLocator;
+        $this->root_service_locator = $rootServiceLocator;
     }
 
     /**
      * @return ServiceManager
+     * @throws \Exception
      */
     public function getRootServiceLocator()
     {
-        if (!$this->rootServiceLocator)
+        if (!$this->root_service_locator)
         {
+            if($this->getServiceLocator() instanceof ServiceManager)
+            {
+                $this->setRootServiceLocator($this->getServiceLocator());
+            }
+
             if ($this->getServiceLocator() instanceof FormElementManager || $this->getServiceLocator() instanceof HelperPluginManager)
             {
                 $this->setRootServiceLocator($this->getServiceLocator()->getServiceLocator());
             }
             else
             {
+                if($this->getServiceLocator() === null)
+                {
+                    throw new \Exception('wtf!');
+                }
                 $this->setRootServiceLocator($this->getServiceLocator());
             }
         }
 
-        return $this->rootServiceLocator;
+        return $this->root_service_locator;
     }
 } 
