@@ -39,9 +39,9 @@ class LogService implements ServiceLocatorAwareInterface
         {
             $this->general_logger = new Logger('general');
             $this->general_logger->pushHandler(new StreamHandler('data/logs/general.log'));
-            $this->general_logger->pushHandler(new NativeMailerHandler('matthew.j.erwin@gmail.com', 'Error', LOG_EMAIL, Logger::ERROR));
+            $this->general_logger->pushHandler(new NativeMailerHandler('', 'Error', LOG_EMAIL, Logger::ERROR));
             $this->general_logger->pushHandler(new RollbarHandler(new RollbarNotifier([
-                'access_token' => '90533bdae7ad4e3d8e63188f39e1b242',
+                'access_token' =>'',
                 'environment' => $this->getEnvironmentName(),
             ]), Logger::WARNING));
         }
